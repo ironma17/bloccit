@@ -1,5 +1,5 @@
-<h1>Random Advertisement</h1>
-<% advert = @advertisement.sample %>
+<h1>All Advertisement</h1>
+<% @advertisement.each do |advert|%>
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
@@ -7,3 +7,4 @@
         </h4>
       </div>
     </div>
+<% end %>
