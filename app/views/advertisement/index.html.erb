@@ -1,2 +1,9 @@
-<h1>Advertisement#index</h1>
-<p>Find me in app/views/advertisement/index.html.erb</p>
+<h1>Random Advertisement</h1>
+<% advert = @advertisement.sample %>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to advert.title, advert %>
+        </h4>
+      </div>
+    </div>
