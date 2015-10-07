@@ -18,8 +18,10 @@
     <div class="form-group">
       <%= f.label :body %>
       <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter question body" %>
-      <%= check_box(:resolved, options = {}, checked_value = "1", unchecked_value = "0") %>
     </div>
+    <div class="form-group">
+      <%= f.label :resolved %>:
+      <%= f.check_box :resolved %>
     <div class="form-group">
       <%= f.submit "Save", class: 'btn btn-success' %>
     </div>
