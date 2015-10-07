@@ -84,7 +84,7 @@ let (:my_post) {Post.create!(title: RandomData.random_sentence, body: RandomData
   end
 
   describe "PUT update" do
-    it "updates post wtih expected attribures" do
+    it "updates post with expected attributes" do
       new_title = RandomData.random_sentence
       new_body = RandomData.random_paragraph
 
