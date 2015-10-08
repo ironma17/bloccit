@@ -8,6 +8,8 @@ RSpec.describe Post, type: :model do
   it { should belong_to(:topic) }
 
   describe "attributes" do
+    it { should belong_to(:topic) }
+
     it "should respond to title" do
       expect(post).to respond_to(:title)
     end
