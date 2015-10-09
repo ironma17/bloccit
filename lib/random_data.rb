@@ -25,7 +25,6 @@ module RandomData
   end
 
   def random_number
-    numbers = (1..100).to_a
-    numbers.sample
+    rand(1..100)
   end
 end

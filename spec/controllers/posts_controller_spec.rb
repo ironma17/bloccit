@@ -20,20 +20,6 @@ let (:my_post) {my_topic.posts.create!(title: RandomData.random_sentence, body: 
     end
   end
 
-  describe "POST create" do
-    it "increases the number of Post by 1" do
-      expect{post :create, topic_id: my_topic.id, post: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}.to change(Post, :count).by(1)
-    end
-    it "assigns the new post to @post" do
-      post :create, topic_id: my_topic.id, post: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
-      expect(assigns(:post)).to eq Post.last
-    end
-    it "redirects to the new post" do
-      post :create, topic_id: my_topic.id, post: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
-      expect(response).to redirect_to [my_topic, Post.last]
-    end
-  end
-
   describe "GET show" do
     it "returns http success" do
       get :show, topic_id: my_topic.id, id: my_post.id
@@ -71,6 +57,21 @@ let (:my_post) {my_topic.posts.create!(title: RandomData.random_sentence, body: 
     end
 
   end
+
+
+  describe "POST create" do
+      it "increases the number of Post by 1" do
+        expect{post :create, topic_id: my_topic.id, post: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}.to change(Post, :count).by(1)
+      end
+      it "assigns the new post to @post" do
+        post :create, topic_id: my_topic.id, post: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(assigns(:post)).to eq Post.last
+      end
+      it "redirects to the new post" do
+        post :create, topic_id: my_topic.id, post: {name: RandomData.random_sentence, description: RandomData.random_paragraph}
+        expect(response).to redirect_to [my_topic, Post.last]
+      end
+    end
 
   describe "PUT update" do
     it "updates post with expected attributes" do
