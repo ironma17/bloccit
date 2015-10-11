@@ -28,5 +28,4 @@ class UsersController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
   end
 
-
 end
