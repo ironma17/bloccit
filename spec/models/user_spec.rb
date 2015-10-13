@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
+  let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password", password_confirmation: "password") }
   it { should have_many(:posts) }
+  it { should have_many(:comments)}
   #Shoulda tests for name
   it { should validate_presence_of(:name) }
   it { should validate_length_of(:name).is_at_least(1) }
 
   #Shoulda tests for email
   it { should validate_presence_of(:email) }
-  it { should validate_uniqueness_of(:email) }
+  it { should validate_uniqueness_of(:email).case_insensitive }
   it { should validate_length_of(:email).is_at_least(3) }
   it { should allow_value("user@bloccit.com").for(:email) }
   it { should_not allow_value("userbloccit.com").for(:email) }
@@ -28,15 +29,15 @@ RSpec.describe User, type: :model do
       expect(user).to respond_to(:email)
     end
 
-    it "sets user password_confirmation properly" do
-      post :create, user: new_user_attributes
-      expect(assigns(:user).password_confirmation).to eq new_user_attributes[:password_confirmation]
-    end
+  #  it "sets user password_confirmation properly" do
+  #    post :create, user: new_user_attributes
+  #    expect(assigns(:user).password_confirmation).to eq new_user_attributes[:password_confirmation]
+  #  end
 
-    it "logs the user in after sign up" do
-      post :create, user: new_user_attributes
-      expect(session[:user_id]).to eq assigns(:user).id
-    end
+  #  it "logs the user in after sign up" do
+  #    post :create, user: new_user_attributes
+  #    expect(session[:user_id]).to eq assigns(:user).id
+  #  end
 
     it "should respond to role" do
       expect(user).to respond_to(:role)
