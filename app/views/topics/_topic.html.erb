@@ -1,0 +1,13 @@
+<div class="media">
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to topic.name, topic %>
+    </h4>
+    <small>
+      <%= topic.description %>
+      <% if user_is_authorized_for_topics? %>
+        | <%= link_to "Delete", [@topic, topic], method: :delete %>
+      <% end %>
+    </small>
+  </div>
+</div>
