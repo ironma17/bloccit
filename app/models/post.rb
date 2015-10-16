@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   has_many :labels, through: :labelings
 
   default_scope { order('rank DESC') }
+  after_create :create_vote
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
@@ -30,4 +31,11 @@ class Post < ActiveRecord::Base
     new_rank = points + age_in_days
     update_attribute(:rank, new_rank)
   end
+
+  private
+
+  def create_vote
+    current_user.votes.create(value: 1, post: @post.)
+  end
+
 end
