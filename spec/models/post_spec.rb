@@ -13,6 +13,7 @@ RSpec.describe Post, type: :model do
   it { should belong_to(:user) }
   it { should have_many(:comments) }
   it { should have_many(:votes) }
+  it { should have_many(:favorites) }
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:body) }
@@ -56,7 +57,7 @@ RSpec.describe Post, type: :model do
         expect( post.points ).to eq(@up_votes - @down_votes)
       end
     end
-    
+
     describe "#update_rank" do
       it "calculates the correct rank" do
         post.update_rank
