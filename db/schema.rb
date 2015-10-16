@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014102510) do
+ActiveRecord::Schema.define(version: 20151016080614) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20151014102510) do
     t.datetime "updated_at", null: false
     t.integer  "topic_id"
     t.integer  "user_id"
+    t.integer  "severity"
   end
 
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id"
@@ -85,6 +86,27 @@ ActiveRecord::Schema.define(version: 20151014102510) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "rates", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "severity"
+  end
+
+  add_index "rates", ["rateable_type", "rateable_id"], name: "index_rates_on_rateable_type_and_rateable_id"
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "severity"
+    t.integer  "labelable_id"
+    t.string   "labelable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "ratings", ["labelable_type", "labelable_id"], name: "index_ratings_on_labelable_type_and_labelable_id"
 
   create_table "sponsored_posts", force: :cascade do |t|
     t.string   "title"
@@ -103,6 +125,7 @@ ActiveRecord::Schema.define(version: 20151014102510) do
     t.text     "description"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "severity"
   end
 
   create_table "users", force: :cascade do |t|
