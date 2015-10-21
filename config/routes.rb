@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'ratings/show'
+  resources :ratings, except: [:new, :destroy]
 
   resources :labels, only: [:show]
   resources :topics do
