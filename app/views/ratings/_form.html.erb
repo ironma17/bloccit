@@ -1,7 +1,7 @@
 <div class="form-group">
-  <%= f.label :ratings %>
-  <%= f.text_field :ratings,
+  <%= f.label :rating %>
+  <%= f.text_field :rating,
                   class: 'form-control',
                   placeholder: "Enter Rating (PG, PG13, or R)",
-                  value: labels.map(&:severity).join(', ') %>
+                  value: rating.severity %>
 </div>
