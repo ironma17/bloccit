@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      @post.rating = Rating.update_rating(params[:post][:ratings])
+      @post.rating = Rating.update_rating(params[:post][:rating])
       @post.labels = Label.update_labels(params[:post][:labels])
       flash[:notice] = "Post was saved."
       redirect_to [@topic, @post]
