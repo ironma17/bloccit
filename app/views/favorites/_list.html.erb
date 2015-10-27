@@ -1,0 +1,20 @@
+<% favorite_posts.each do |post, topic| %>
+  <div class="media">
+    <%= render partial: 'votes/voter', locals: { post: post } %>
+    <% avatar_url = User.avatar_url(post.user, 30) %>
+    <% unless avatar_url.nil? %>
+        <%= image_tag avatar_url, class: 'media-object pull-left' %>
+    <% end %>
+    <div class="media-body">
+
+      <h4 class="media-heading">
+        <%= link_to post.title, post_favorite_path( post.id, post ) %>
+        <%= render partial: "labels/list", locals: { labels: post.labels } %>
+      </h4>
+      <small>
+        submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %>
+        <%= post.comments.count %> Comments
+      </small>
+    </div>
+  </div>
+<% end %>

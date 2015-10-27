@@ -1,5 +1,8 @@
 class FavoritesController < ApplicationController
   before_action :require_sign_in
+  def show
+    @favorite_posts = @user.favorite_posts
+  end
 
   def create
     post = Post.find(params[:post_id])
@@ -24,5 +27,5 @@ class FavoritesController < ApplicationController
       flash[:error] = "Unfavoriting failed."
     end
       redirect_to [post.topic, post]
-  end  
+  end
 end

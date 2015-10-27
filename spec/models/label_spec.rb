@@ -5,8 +5,8 @@ RSpec.describe Label, type: :model do
   let(:topic) { create(:topic) }
   let(:post) { create(:post) }
   let(:user) { create(:user) }
-  let(:label) { Label.create!(name: 'Label') }
-  let(:label2) { Label.create!(name: 'Label2') }
+  let(:my_label) { create(:label) }
+  let(:my_2ndlabel) { Label.create!(name: RandomData.random_name) }
 
   it { should belong_to :labelable }
   it { should have_many :labelings }
@@ -15,8 +15,8 @@ RSpec.describe Label, type: :model do
 
   describe "labelable" do
     it "allows the same label to be associated with a different topic and post" do
-      topic.labels << label
-      post.labels << label
+      topic.labels << my_label
+      post.labels << my_label
 
       topic_label = topic.labels[0]
       post_label = post.labels[0]
@@ -26,9 +26,9 @@ RSpec.describe Label, type: :model do
 
   describe ".update_labels" do
     it "takes a comma delimited string and returns an array of Labels" do
-      labels = "#{label.name}, #{label2.name}"
-      labels_as_a = [label, label2]
-      expect(Label.update_labels(labels)).to eq(labels_as_a)
+      labelz = "#{my_label.name}, #{my_2ndlabel.name}"
+      labels_as_a = [my_label, my_2ndlabel]
+      expect(Label.update_labels(labelz)).to eq(labels_as_a)
     end
   end
 end
