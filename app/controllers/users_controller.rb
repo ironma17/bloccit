@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email]
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
+    @user.auth_token = params[:user][:auth_token]
+
 
     if @user.save
       flash[:notice] = "Welcome to Bloccit #{@user.name}!"
@@ -22,10 +24,8 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new
-    @user.name = params[:user][:name]
-    @user.email = params[:user][:email]
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
+    @user = params[:user]
+
   end
 
   def show
