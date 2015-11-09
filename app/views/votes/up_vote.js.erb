@@ -1,5 +1,5 @@
 <% if @post.valid? %>
-  $('.new-vote').html("<%= escape_javascript(render partial: 'votes/voter', locals: { post: post }) %>");
+  $('.new-vote').html("<%= escape_javascript(render partial: 'votes/voter', locals: { post: @post }) %>");
   $('.vote-points').html("<%= pluralize(@post.points, 'point') %>")
   $('.up-vote-points').html("<%= pluralize(@post.up_votes, 'up vote') %>")
 <% else %>
