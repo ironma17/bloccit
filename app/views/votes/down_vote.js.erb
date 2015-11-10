@@ -1,5 +1,6 @@
 <% if @post.valid? %>
-  $('.update-vote').html("<%= escape_javascript(render partial: 'votes/voter', locals: {post: post}) %>")
+  $('.update-vote').html("<%= escape_javascript(render partial: 'votes/voter', locals: {post: @post}) %>");
+  $('#post-' +<%= @post.id %>).html("<%= escape_javascript(render partial: 'votes/voter', locals: {post: @post})  %>");
   $('.vote-points').html("<%= pluralize(@post.points, 'point') %>");
   $('.down-vote-points').html("<%= pluralize(@post.down_votes, 'down vote') %>");
   $('.up-vote-points').html("<%= pluralize(@post.up_votes, 'up vote') %>");

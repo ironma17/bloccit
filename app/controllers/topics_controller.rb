@@ -7,6 +7,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @posts = @topic.posts(params[:id])
 
     unless @topic.public || current_user
       flash[:error] = "You must be signed in to view private topics."
