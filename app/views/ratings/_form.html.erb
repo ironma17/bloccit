@@ -1,7 +1,8 @@
 <div class="form-group">
   <%= f.label :rating %>
-  <%= f.text_field :rating,
-                  class: 'form-control',
-                  placeholder: "Enter Rating (PG, PG13, or R)",
-                  value: rating %>
+  <% if rating %>
+    <%= f.select :rating, options_for_select(Rating.severities, Rating.severities[rating.severity]) %>
+  <% else %>
+    <%= f.select :rating, options_for_select(Rating.severities) %>
+  <% end %>
 </div>

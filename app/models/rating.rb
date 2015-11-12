@@ -8,11 +8,6 @@ class Rating < ActiveRecord::Base
   enum severity: [ :PG, :PG13, :R ]
 
   def self.update_rating(rating_string)
-    new_rating = []
-    unless rating_string.nil? || rating_string.empty?
-      rating_severity = rating_string.split(",").first.strip
-      new_rating = Rating.find_or_create_by(severity: rating_severity)
-    end
-    new_rating
+      new_rating = Rating.find_or_create_by(severity: rating_string.to_i)
   end
 end
