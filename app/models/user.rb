@@ -1,10 +1,6 @@
 class User < ActiveRecord::Base
-  def systemize_input
-    self.name = name.split(' ').map(&:capitalize).join(' ')
-    self.email = email.downcase
-  end
-  
-  before_save { systemize_input }
+
+  before_save { self.email = email.downcase }
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, length: { minimum: 1, maximum: 100 }, presence: true
@@ -15,6 +11,7 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: true },
             length: { minimum: 3, maximum: 100 },
             format: { with: EMAIL_REGEX }
+
   has_secure_password
 
 
