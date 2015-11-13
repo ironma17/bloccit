@@ -132,8 +132,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     end
 
     describe "POST create" do
-      before { post :create, topic: {name: @new_topic.name, description: @new_topic.description} }
-
+      context "with valid attributes"
       it "returns http success" do
         expect(response).to have_http_status(:success)
       end
