@@ -15,4 +15,11 @@ class RatingsController < ApplicationController
     @rating = Rating.find(params[:id])
     @rating.assign_attributes(rating_params)
   end
+
+  private
+
+  def rating_params
+    params.require(:rating).permit(:severity, :rating_id)
+  end
+
 end
